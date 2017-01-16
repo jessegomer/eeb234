@@ -1,0 +1,25 @@
+5 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 eeb-177/01-my-favorite-animals/Acropora-hyacinthus3.jpg
+ create mode 100644 eeb-177/01-my-favorite-animals/armadillo.jpg
+ create mode 100644 eeb-177/01-my-favorite-animals/mantis-shrimp1.jpg
+ create mode 100644 eeb-177/01-my-favorite-animals/mola.jpg
+ create mode 100644 eeb-177/01-my-favorite-animals/seawatch_mako_shark.jpg
+eeb177-student@eeb177-VirtualBox:~/Desktop/eeb234/eeb-177/01-my-favorite-animals$ git push
+Counting objects: 19, done.
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (19/19), 527.75 KiB | 0 bytes/s, done.
+Total 19 (delta 0), reused 0 (delta 0)
+To https://github.com/zjgold/eeb234.git
+   886a4ed..18a7773  master -> master
+eeb177-student@eeb177-VirtualBox:~/Desktop/eeb234/eeb-177/01-my-favorite-animals$ cd ..
+eeb177-student@eeb177-VirtualBox:~/Desktop/eeb234/eeb-177$ git clone "https://github.com/gauravsk/my-fav-animals.git"
+Cloning into 'my-fav-animals'...
+remote: Counting objects: 12, done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 12 (delta 1), reused 12 (delta 1), pack-reused 0
+Unpacking objects: 100% (12/12), done.
+Checking connectivity... done.
+eeb177-student@eeb177-VirtualBox:~/Desktop/eeb234/eeb-177$ ls
+01-my-favorite-animals  homework  lab-work  my-fav-animals
+eeb177-student@eeb177-VirtualBox:~/Desktop/eeb234/eeb-177$ ^C
+
