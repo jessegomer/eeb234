@@ -8,3 +8,9 @@ Absolute and Relative Paths
 Realtive Path Resolution
 
 4. original pnas_final pnas_sub
+
+
+ls Reading Comprehension
+
+2. ls -r -F
+3. ls -r -F /Users/backup
