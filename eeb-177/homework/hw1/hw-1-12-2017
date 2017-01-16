@@ -19,3 +19,6 @@ ls Reading Comprehension
 Exploring More ls Arguments
 - l displays long list format: file/directory names, file size, and time of last mod
 -h displays file size in "human readable" form
+
+List Recursively and By Time
+Directories in the pwd are listed in alphabetical order (-R is first), and then the subfiles/directories within these directories are sorted by time of last modification 
