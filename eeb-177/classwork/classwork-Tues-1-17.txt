@@ -484,3 +484,5 @@ I will put my classwork in here.
   483  man bash
   484  history
   485  history > unix-commands-used-in-class.txt
+Classwork notes and assignments
+ZJG
