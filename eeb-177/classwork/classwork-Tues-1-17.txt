@@ -1,1 +1,486 @@
 I will put my classwork in here.
+    1  sudo apt-get update
+    2  sudo reboot
+    3  sudo ./install_things.sh
+    4  cd /etc/apt/
+    5  ls
+    6  cd preferences.d/
+    7  ls
+    8  cd ../
+    9  ls
+   10  sudo sources.list
+   11  sudo gedit sources.list
+   12  ls
+   13  cd preferences.d/
+   14  ls
+   15  touch 01_release
+   16  sudo touch 01_release
+   17  sudo gedit 01_release 
+   18  sudo apt-get update
+   19  sudo apt-get install libgstreamer0.10-0 libgstreamer-plugins-base0.10-0.
+   20  ls
+   21  cd 
+   22  ls
+   23  cd Downloads/
+   24  ls
+   25  sudo gdebi rstudio-1.0.136-amd64.deb 
+   26  cd
+   27  apt-get install rstudio
+   28  sudo apt-get install rstudio
+   29  sudo apt-get -f install
+   30  ls
+   31  cd Downloads/
+   32  ls
+   33  sudo gdebi rstudio-1.0.136-amd64.deb 
+   34  sudo apt-get install rstudio
+   35  sudo rstudio 
+   36  cd
+   37  clear
+   38  =ls
+   39  clear
+   40  ls
+   41  cd Downloads/
+   42  ls
+   43  bash Miniconda3-latest-Linux-x86_64.sh 
+   44  df -h
+   45  cd
+   46  ls
+   47  conda update conda
+   48  exit
+   49  ls
+   50  conda update conda
+   51  ls
+   52  df -h
+   53  conda install numpy
+   54  df -h
+   55  conda install jupyter
+   56  ls
+   57  jupyter 
+   58  df -h
+   59  conda install numpy
+   60  conda install scipy
+   61  df -h
+   62  jupyter notebook
+   63  ls
+   64  clear
+   65  ls
+   66  cd Desktop/
+   67  ls
+   68  exit
+   69  sudo rstudio
+   70  pwd
+   71  git config --global user.name "zgold"
+   72  git config --global user.email "zack.j.gold@gmail.com"
+   73  cd Desktop
+   74  mkdir eeb-117
+   75  cd eeb-117
+   76  mkdir lab-work
+   77  cd lab-work
+   78  pwd
+   79  git init
+   80  touch README.txt
+   81  gedit README.txt
+   82  git add README.txt
+   83  git commit -m "initial commit: adding README file"
+   84  git log
+   85  git remote add origin https://github.com/zjgolf/eeb234.git
+   86  git push -u origin master
+   87  git remote add origin https://github.com/zjgold/eeb234.git
+   88  git push -u origin master
+   89  git remote add origin https://github.com/zjgold/eeb234.git
+   90  pwd
+   91  git config --global user.name "zjgold"
+   92  git config --global user.email "zack.j.gold@gmail.com"
+   93  cd Desktop/eeb-177/lab-work
+   94  pwd
+   95  cd Desktop
+   96  cd eeb-177
+   97  mkdir eeb-177
+   98  mkdir lab-work
+   99  git init
+  100  pwd
+  101  cd eeb-177
+  102  cd lab-work
+  103  pwd
+  104  ls
+  105  git commit -m "initial commit: adding README file"
+  106  git add README.txt
+  107  git commit -m "initial commit: adding README file"
+  108  git log
+  109  git remote add origin https://github.com/zjgold/eeb234.git
+  110  git push -u origin master
+  111  git config --global credential.helper cache
+  112  git config -global credential.helper 'cache --timeout=3600'
+  113  cd ..
+  114  mkdir exercise-1
+  115  git add exercise-1
+  116  cd exercise-1
+  117  touch README.txt
+  118  sudo gedit README.txt
+  119  cd ..
+  120  ls
+  121  cd lab-work/
+  122  ls
+  123  git add exercise-1
+  124  git status
+  125  git init
+  126  git add exercise-1
+  127  git status
+  128  git commit -m "initial commit: adding README file"
+  129  git status
+  130  git add exercise-1/README.txt
+  131  git status
+  132  git add README.txt
+  133  git status
+  134  pwd
+  135  ls
+  136  git add exercise-1/README.txt
+  137  git status
+  138  git commit -m "initial commit: adding README file"
+  139  git status
+  140  git log
+  141  git status
+  142  git push
+  143  git remote add 'zjgold' 'https://github.com/zjgold/eeb234'
+  144  git push zjgold
+  145  git remote add origin https://github.com/zjgold/eeb234.git
+  146  git push
+  147  git remote add origin https://github.com/zjgold/eeb234.git
+  148  git remote -v
+  149  git push origin master
+  150  git pull
+  151  git remote -v
+  152  cd Desktop/eeb-177
+  153  cd lab-work/
+  154  git init
+  155  git add exercise-1/README.txt
+  156  git commit -m "First commit"
+  157  git remote -v
+  158  git push origin master
+  159  git pull
+  160  git pull 'https://github.com/zjgold/eeb.git' 'https://github.com/zjgold/eeb234'
+  161  git add exercise-1/README.txt
+  162  git commit "attempt 2"
+  163  git commit 'attempt 2'
+  164  git commit -m 'attempt 2'
+  165  git clone
+  166  git remote -v
+  167  git push origin
+  168  git push --set-upstream origin master
+  169  git config push.default tracking
+  170  git remote -v
+  171  git push origin
+  172  las
+  173  ls
+  174  git status
+  175  git log
+  176  .gitignore
+  177  pwd
+  178  cd ..
+  179  git init
+  180  ls
+  181  cd lab-work/
+  182  git init
+  183  git add exercise-1/README.txt
+  184  git commit -m "we"
+  185  git push -u origin master
+  186  git pull
+  187  git remote -v
+  188  cd Desktop/eeb177
+  189  pwd
+  190  cd Desktop
+  191  cd eeb-177/
+  192  ls
+  193  cd lab-work/
+  194  git remote -v
+  195  git init
+  196  git add exercise-1/README.txt
+  197  git status
+  198  git commit -m "here we go"
+  199  git branch --set-upstream-to origin master
+  200  git fetch
+  201  git add exercise-1/README.txt
+  202  git commit -m "intial commit: adding README file"
+  203  git congig --global user.name "zjgold"
+  204  git config --global user.name "zjgold"
+  205  git config --global user.email "zack.j.gold@gmail.com"
+  206  pwd
+  207  git init
+  208  git status
+  209  git add exercise-1/READ.me
+  210  pwd
+  211  ls
+  212  git add exercise-1/README.txt
+  213  git commit -m "try"
+  214  git status
+  215  git log
+  216  git remote -v
+  217  git push
+  218  git push -- set-upstream origin master
+  219  git push --set-upstream origin master
+  220  git fetch
+  221  git merge
+  222  git push
+  223  git pull
+  224  git pull "//https.github.com/zjgold/eeb234" "//https.github.com/zjgold/eeb234/eeb-177"
+  225  git push
+  226  git push --set-upstream origin master
+  227  git pull
+  228  git branch
+  229  git push
+  230  git push --set-upstream origin master
+  231  git log
+  232  cd ..
+  233  get clone "https://github.com/zjgold/eeb234.git"
+  234  git clone "https://github.com/zjgold/eeb234.git"
+  235  cd eeb234
+  236  ls
+  237  cd eeb-177/
+  238  get add lab-work/exercise-1/README.txt
+  239  git add lab-work/exercise-1/README.txt
+  240  git commit -m "test"
+  241  git push
+  242  cd lab-work/exercise-1/
+  243  ls
+  244  touch one-liner.txt
+  245  sudo gedit "one-liner.txt"
+  246  git add one-liner.txt 
+  247  git commit -m "one liner added"
+  248  git push
+  249  cd ..
+  250  l
+  251  git status
+  252  cd ..
+  253  git add eeb-177/lab-work/exercise-1/one-liner.txt 
+  254  git commit -m "one liner txt"
+  255  git push
+  256  git add eeb-177/lab-work/exercise-1/README.txt 
+  257  git commit -m "added favorite food joints and sass"
+  258  git push
+  259  git log
+  260  git add eeb-177/lab-work/exercise-1/screenshot_commits_zjg.pdf 
+  261  git commit -m "screenshot added"
+  262  git push
+  263  mkdir eeb-177/homework
+  264  cd homework
+  265  cd eeb-177/homework/
+  266  git branch
+  267  git checkout -b dummy-branch
+  268  git branch
+  269  cd ..
+  270  cd lab-work/exercise-1/
+  271  touch dummy-file
+  272  cd ..
+  273  cd homework/
+  274  git add ~/Desktop/eeb234/eeb-177/lab-work/exercise-1/dummy-file 
+  275  git commit -m "creating and adding dummy file to exercise 1"
+  276  git push
+  277  cd ..
+  278  git push
+  279  cd .. 
+  280  git push
+  281  cd eeb234/
+  282  cd eeb-177/ho
+  283  cd eeb-177/homework/
+  284  git push
+  285  git push --set-upstream origin dummy-branch 
+  286  git log --decorate
+  287  cd ..
+  288  cd lab-work/exercise-1/
+  289  ls
+  290  git checkout master
+  291  git merge dummy-branch
+  292  cd ..
+  293  git checkout master
+  294  git merge dummy-branch
+  295  cd lab-work/exercise-1/
+  296  ls
+  297  git rm dumm-file
+  298  git rm dummy-file 
+  299  ls
+  300  git rm dummy-file
+  301  git rm 'dummy-file' 
+  302  ls
+  303  git rm 'dummy-file.txt'
+  304  git add dummy-file 
+  305  git commit -m "add dummy-file"
+  306  git push
+  307  cd ..
+  308  git push
+  309  git rm eeb-177/lab-work/exercise-1/dummy-file 
+  310  git commit -m "remove dummy file"
+  311  git push
+  312  git revert '1'
+  313  git log
+  314  git revert 'f2f5a50c88155d1f376d74c47d0e0a120dc1c47a'
+  315  git log
+  316  git push
+  317  cd eeb-177/
+  318  mkdir 01-my-favorite-animals
+  319  cd 01-my-favorite-animals/
+  320  touch README.txt
+  321  sudo gedit README.txt 
+  322  touch links.txt
+  323  sudo gedit links.txt
+  324  git commit -m "favorite animals homework"
+  325  git add README.txt 
+  326  git commit -m  "add hw readme"
+  327  git add links.txt 
+  328  git commit -m "add hw links"
+  329  git add Acropora-hyacinthus3.jpg 
+  330  git add armadillo.jpg 
+  331  git add mantis-shrimp1.jpg 
+  332  git add mola.jpg 
+  333  git add seawatch_mako_shark.jpg 
+  334  git commit -m "photos"
+  335  git push
+  336  cd ..
+  337  git clone "https://github.com/gauravsk/my-fav-animals.git"
+  338  ls
+  339  cd 01-my-favorite-animals/
+  340  ls
+  341  touch screenshot.txt
+  342  sudo gedit screenshot.txt 
+  343  git add screenshot.txt 
+  344  git commit -m "this is my best attempt at adding a screenshot using this stupid virtual machine"
+  345  git push
+  346  cd ..
+  347  ls
+  348  cd homework/
+  349  mkdir hw1
+  350  cd hw1/
+  351  touch hw-1-12-2017
+  352  sudo get hw-1-12-2017 
+  353  sudo gedit hw-1-12-2017 
+  354  q
+  355  $
+  356  whoami
+  357  pwd
+  358  ls
+  359  cd ..
+  360  ls
+  361  ls -F
+  362  ls --help
+  363  man
+  364  grep
+  365  man 
+  366  unix man page
+  367  ls -F Desktop/
+  368  cd Desktop/
+  369  cd eeb234/
+  370  cd eeb-177/
+  371  cd homework/
+  372  cd hw1
+  373  ls
+  374  git add hw-1-12-2017 
+  375  git commit -m "first question"
+  376  git push
+  377  ls
+  378  git add hw-1-12-2017 
+  379  git commit -m "2nd question"
+  380  git add hw-1-12-2017 
+  381  git commit -m "2nd question"
+  382  git push
+  383  git add hw-1-12-2017 
+  384  git commit -m "3rd question"
+  385  git push
+  386  git add hw-1-12-2017 
+  387  git commit -m "4th question"
+  388  git push
+  389  git add hw-1-12-2017 
+  390  git commit -m "5th question"
+  391  git push
+  392  pwd
+  393  cd Desktop/
+  394  gedit
+  395  cd eeb234/
+  396  cd eeb-177/
+  397  mkdir classwork
+  398  gedit 01-17-17-classwork
+  399  ls
+  400  cd classwork/
+  401  gedit junk
+  402  mv junk junkedup
+  403  ls
+  404  mv 01-17-17-classwork classwork-Tues-1-17.txt
+  405  ls
+  406  git add classwork-Tues-1-17.txt 
+  407  git commit -m "classwork push"
+  408  git push
+  409  git status
+  410  mv junkedup junk
+  411  ls
+  412  cd ..
+  413  cd..
+  414  cd ..
+  415  cd ~/bin
+  416  /root/bin
+  417  /
+  418  cd ..
+  419  bin
+  420  cd bin
+  421  ls
+  422  cd ..
+  423  cd root
+  424  cd U
+  425  cd Users
+  426  ls
+  427  cd home/
+  428  ls
+  429  cd eeb177-student/
+  430  ls
+  431  cd ~
+  432  git clone https://github.com/StefanoAllesina/CSB.git
+  433  cd CSB
+  434  ls
+  435  cd unix/
+  436  ls
+  437  cd installation/
+  438  ls
+  439  cd ~
+  440  cd CSB/unix/installation/
+  441* 
+  442  ls
+  443  touch badly named file.txt
+  444  ls
+  445  touch "badly named file.txt"
+  446  ls
+  447  cp "badly named filt.txt" /~
+  448  cp ~/ "badly named filed.txt"
+  449  cp badly named filed.txt /home
+  450  cp badly named filed.txt /~
+  451  cp badly named filed.txt ~/
+  452  cp "badly named filed.txt" ~/
+  453  ls
+  454  rm badly
+  455  rm badly named file.txt
+  456  rm "badly named file.txt"
+  457  rm named
+  458  rm file.txt
+  459  ls
+  460  touch "badly named file.txt"
+  461  ls
+  462  cp badly\ named\ file.txt ~/
+  463  cd ~/
+  464  ls
+  465  rm badly
+  466  rm named
+  467  ls
+  468  cd Desktop/eeb234/eeb-177/classwork/
+  469  ls
+  470  ls -la
+  471  touch .config
+  472  ls
+  473  ls -a
+  474  touch README.txt
+  475  gedit README.txt 
+  476  man ls
+  477  man cd
+  478  man bash
+  479  man pwd
+  480  type cd
+  481  man bash
+  482  man ls
+  483  man bash
+  484  history
+  485  history > unix-commands-used-in-class.txt
