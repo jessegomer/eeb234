@@ -1,0 +1,293 @@
+Zachary Gold
+
+Question 1.
+
+$ head -n 6 Pacifici2013_data.csv | cut -d ';' -f 2 | tail -n +2
+ Rodentia
+ Rodentia
+ Rodentia
+ Macroscelidea
+Rodentia
+
+Question 2.
+
+There are 153 unique families
+Abrocomidae
+Acrobatidae
+Ailuridae
+Anomaluridae
+Antilocapridae
+Aotidae
+Aplodontiidae
+Atelidae
+Balaenidae
+Balaenopteridae
+Bathyergidae
+Bovidae
+Bradypodidae
+Burramyidae
+Caenolestidae
+Callitrichidae
+Calomyscidae
+Camelidae
+Canidae
+Capromyidae
+Castoridae
+Caviidae
+Cebidae
+Cercopithecidae
+Cervidae
+Cheirogaleidae
+Chinchillidae
+Chrysochloridae
+Craseonycteridae
+Cricetidae
+Ctenodactylidae
+Ctenomyidae
+Cuniculidae
+Cyclopedidae
+Cynocephalidae
+Dasypodidae
+Dasyproctidae
+Dasyuridae
+Daubentoniidae
+Delphinidae
+Diatomyidae
+Didelphidae
+Dinomyidae
+Dipodidae
+Dugongidae
+Echimydae
+Echimyidae
+Elephantidae
+Emballonuridae
+Equidae
+Erethizontidae
+Erinaceidae
+Eschrichtiidae
+Eupleridae
+Family
+Felidae
+Furipteridae
+Galagidae
+Geomyidae
+Giraffidae
+Gliridae
+Herpestidae
+Heteromyidae
+Hippopotamidae
+Hipposideridae
+Hominidae
+Hyaenidae
+Hylobatidae
+Hypsiprymnodontidae
+Hystricidae
+Indriidae
+Iniidae
+Lemuridae
+Lepilemuridae
+Leporidae
+Lorisidae
+Macropodidae
+Macroscelididae
+Manidae
+Megadermatidae
+Megalonychidae
+Mephitidae
+Microbiotheriidae
+Molossidae
+Monodontidae
+Mormoopidae
+Moschidae
+Muridae
+Mustelidae
+Myocastoridae
+Myrmecobiidae
+Myrmecophagidae
+Mystacinidae
+Myzopodidae
+Nandiniidae
+Natalidae
+Neobalaenidae
+Nesomyidae
+Noctilionidae
+Notoryctidae
+Nycteridae
+Ochotonidae
+Octodontidae
+Odobenidae
+Ornithorhynchidae
+Orycteropodidae
+Otariidae
+Pedetidae
+Peramelidae
+Petauridae
+Petromuridae
+Phalangeridae
+Phascolarctidae
+Phocidae
+Phocoenidae
+Phyllostomidae
+Physeteridae
+Pitheciidae
+Platacanthomyidae
+Platanistidae
+Potoroidae
+Prionodontidae
+Procaviidae
+Procyonidae
+Pseudocheiridae
+Pteropodidae
+Ptilocercidae
+Rhinocerotidae
+Rhinolophidae
+Rhinopomatidae
+Sciuridae
+Solenodontidae
+Soricidae
+Spalacidae
+Suidae
+Tachyglossidae
+Talpidae
+Tapiridae
+Tarsiidae
+Tarsipedidae
+Tayassuidae
+Tenrecidae
+Thryonomyidae
+Thylacomyidae
+Thyropteridae
+Tragulidae
+Trichechidae
+Tupaiidae
+Ursidae
+Vespertilionidae
+Viverridae
+Vombatidae
+Ziphiidae
+
+Question 3. 
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ tail -n +2 ../data//Pacifici2013_data.csv | cut -d ';' -f 2-6 |tr -s ';' ' '| sort -n -r -k 6 > BodyM.csv
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ 
+
+Question 4. 
+10th largest : Eubalaena glacialis or commonly known as the North Atlantic Right Whales. Unfortunately endangered because they were the right whales to hunt since they float when harpooned **tear
+10th smallest:  Pipistrellus nanulus commonly known as the tiny pipistrelle 
+
+Question 5.
+
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ wc -l BodyM.csv 
+5426 BodyM.csv
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ grep Vombatidae BodyM.csv 
+Diprotodontia Vombatidae Lasiorhinus Lasiorhinus krefftii 31849.99
+Diprotodontia Vombatidae Lasiorhinus Lasiorhinus latifrons 26163.8
+Diprotodontia Vombatidae Vombatus Vombatus ursinus 26000
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ grep -c Vombatidae BodyM.csv 
+3
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ grep Bos  BodyM.csv 
+Cetartiodactyla Bovidae Bos Bos sauveli 791321.8
+Cetartiodactyla Bovidae Bos Bos gaurus 721000
+Cetartiodactyla Bovidae Bos Bos mutus 650000
+Cetartiodactyla Bovidae Bos Bos javanicus 635974.3
+Cetartiodactyla Bovidae Boselaphus Boselaphus tragocamelus 182253
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ grep -w Bos  BodyM.csv 
+Cetartiodactyla Bovidae Bos Bos sauveli 791321.8
+Cetartiodactyla Bovidae Bos Bos gaurus 721000
+Cetartiodactyla Bovidae Bos Bos mutus 650000
+Cetartiodactyla Bovidae Bos Bos javanicus 635974.3
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ grep -i Bos  BodyM.csv 
+Proboscidea Elephantidae Loxodonta Loxodonta africana 3824540
+Proboscidea Elephantidae Elephas Elephas maximus 3269794
+Cetartiodactyla Bovidae Bos Bos sauveli 791321.8
+Cetartiodactyla Bovidae Bos Bos gaurus 721000
+Cetartiodactyla Bovidae Bos Bos mutus 650000
+Cetartiodactyla Bovidae Bos Bos javanicus 635974.3
+Cetartiodactyla Bovidae Ovibos Ovibos moschatus 312500
+Cetartiodactyla Bovidae Boselaphus Boselaphus tragocamelus 182253
+Macroscelidea Macroscelididae Macroscelides Macroscelides proboscideus 38.64
+Rodentia Cricetidae Neacomys Neacomys dubosti 17.9566666667
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ grep -B 2 -A 2 "Gorilla gorilla" BodyM.csv 
+Cetartiodactyla Bovidae Ovis Ovis ammon 113998.7
+Cetartiodactyla Delphinidae Lissodelphis Lissodelphis borealis 113000
+Primates Hominidae Gorilla Gorilla gorilla 112589
+Cetartiodactyla Cervidae Blastocerus Blastocerus dichotomus 112518.5
+Cetartiodactyla Iniidae Lipotes Lipotes vexillifer 112138.3
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ grep -n "Gorilla gorilla" BodyM.csv 
+164:Primates Hominidae Gorilla Gorilla gorilla 112589
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ grep Gorilla  BodyM.csv | grep -v gorilla
+Primates Hominidae Gorilla Gorilla beringei 149325.2
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ grep -w "Gorilla\|Pan" BodyM.csv 
+Primates Hominidae Gorilla Gorilla beringei 149325.2
+Primates Hominidae Gorilla Gorilla gorilla 112589
+Primates Hominidae Pan Pan troglodytes 45000
+Primates Hominidae Pan Pan paniscus 35119.95
+eeb177-student@eeb177-VirtualBox:~/CSB/unix/sandbox$ cd ~/CSB/unix/
+eeb177-student@eeb177-VirtualBox:~/CSB/unix$ grep -r "Gorilla" data/
+data/Pacifici2013_data.csv:39994;Primates;Hominidae;Gorilla;Gorilla beringei;149325.2;PanTHERIA;no information;no information;no information;no information;no information;no information;7300;GMA
+data/Pacifici2013_data.csv:9404;Primates;Hominidae;Gorilla;Gorilla gorilla;112589;PanTHERIA;19965.5;"PanTHERIA;AnAge";16315.5;3650;PanTHERIA;8381.495;8030;GMA
+eeb177-student@eeb177-VirtualBox:~/CSB/unix$ 
+
+Question 6. 
+1. Change directory to the /CSB/unix/sandbox.
+cd ~/CSB/unix/sandbox/
+
+2. What is the size of the file Marra2014_data.fasta?
+566026 bytes
+
+ 3. Create a copy of Marra2014_data.fasta in the sandbox and name
+ it my_file.fasta.
+cp ~/CSB/unix/data/Marra2014_data.fasta ~/CSB/unix/sandbox/my_file.fasta
+
+ 4. How many contigs are classified as isogroup00036?
+ grep -c isogroup00036 my_file.fasta 
+16
+
+ 5. Replace the original “two-spaces” delimiter with a comma.
+tr -s ' ' ',' < my_file.fasta >my_file_nospaces_.fasta 
+
+
+ 6. How many unique isogroups are in the file?
+grep gene=isogroup[0-9][0-9][0-9][0-9][0-9] my_file_nospaces_.fasta > isogroups.txt
+cut -d ',' -f 4 isogroups.txt | uniq | wc -l
+43
+ 7. Which contig has the highest number of reads (numreads)? How many
+ reads does it have?
+grep numreads=  my_file_nospaces_.fasta > numreads.txt
+cut -d ',' -f 3 numreads.txt | tr '=' ',' | cut -d ',' -f 2 | sort -n | tail -n 1
+3330
+
+Question 7. 
+for datafile in n*.txt
+   do 
+         echo $datafile edited-$datafile
+         cp $datafile ~/CSB/unix/sandbox/temp/edited-$datafile
+done
+
+Question 8. 
+
+Using Grep
+
+3.grep -w "of" haiku.txt
+
+find Pipeline Reading Comprehension
+This line of code outputs a  list of .dat files that have been sorted based on the number of lines in each file.
+
+Matching and Subtracting
+1. find /data -name '*.dat' | grep ose | grep -v temp
+3. grep -v "temp" $(find /data -name '*ose.dat')
+
+Tracking a Species
+cut -d : -f 2    |  grep -w $1 -r $2  |  cut -d , -f 1,3 > $1.txt  
+
+Little Women:
+for women in [Jo, Amy, Meg, Beth]
+  do
+        grep -c  -i $women  LittleWomen.txt
+done
+
+Finding Files with Different Properties
+find ./ -type f -mtime -1 -user ahmed
+
+
+
+
