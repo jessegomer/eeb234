@@ -1,3 +1,84 @@
 Zack's Class work
 
 1-26-17
+    
+  591  sudo reboot
+  592  cd Desktop/eeb234/eeb-177/classwork/
+  593  ls
+  594  touch classwork-Thursday-1-26.txt 
+  595  ls
+  596  gedit classwork-Thursday-1-26.txt 
+  597  ls -l
+  598  touch permission.txt
+  599  ls -l
+  600  chmod chmod u=rwx permissions.txt
+  601  ls
+  602  chmod chmod u=rwx permission.txt
+  603  ls -l
+  604  chmod g+w,u+x permissions.txt
+  605  chmod g+w,u+x permission.txt
+  606  ls -l
+  607  chmod u-x permission.txt 
+  608  ls -l
+  609  gedit 
+  610  ls
+  611  ls /usr/bin
+  612  ls /bin
+  613  git add classwork-Thursday-1-26.txt 
+  614  git commit -m "adding classwork 1-26 file"
+  615  git push
+  616  ls
+  617  dir.sh
+  618  ls -l
+  619  ls /usr/bin/
+  620  ls /bin
+  621  $PATH
+  622  cd
+  623  mkdir scripts
+  624  ls
+  625  cd scripts/
+  626  mv ~/Desktop/eeb234/eeb-177/classwork/dir.sh .
+  627  ls
+  628  gedit .bash_profile
+  629  ls
+  630  cd ..
+  631  ls
+  632  gedit .bash_profile
+  633  ls -a
+  634  $PATH
+  635  cd scripts/
+  636  ls
+  637  chmod u+x dir.sh 
+  638  ls -l
+  639  dir.sh
+  640  ./dir.sh 
+  641  gedit dir.sh 
+  642  dir
+  643  dir.sh
+  644  ls
+  645  ./dir.sh 
+  646  cd ..
+  647  gedit .profile
+  648  sudo reboot
+  649  git init
+  650  git add ~/scripts/
+  651  git commit -m "scripts"
+  652  git push
+  653  git remote add script2 "https://github.com/zjgold/script2"
+  654  git push script2
+  655  git push --set-upstream script2 master
+  656  git remote add origin https://github.com/zjgold/script2.git
+  657  git push -u origin master
+  658  cd Desktop/eeb234/eeb-177/classwork/
+  659  git add classwork-Thursday-1-26
+  660  git add classwork-Thursday-1-26.txt
+  661  git commit
+  662  git push
+  663  git add classwork-Thursday-1-26.txt
+  664  history -n 100 >> classwork-Thursday-1-26.txt 
+  665  git commit -m "classwork exercises 1-26 complete"
+  666  gedit classwork-Thursday-1-26.txt 
+  667  history -n 100
+  668  history
+  669  history -n 500
+  670  history >> classwork-Thursday-1-26.txt 
