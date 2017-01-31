@@ -1,0 +1,50 @@
+Zack Gold HW3
+
+Question 1.
+a) 
+$cut -s -f 1 Gesquiere2011_data.csv | grep -w 3 -c
+61
+
+$cut -s -f 1 Gesquiere2011_data.csv | grep -w 27 -c
+5
+
+b) 
+#Script
+
+#! /bin/bash
+cut -s -f 1 $1 | grep -w $2 -c
+
+$ records.sh ~/CSB/unix/data/Gesquiere2011_data.csv 3
+61
+
+c) 
+
+#! /bin/bash
+for i in {1..127}
+do
+	echo "Individual $i"	
+	cut -s -f 1 ~/CSB/unix/data/Gesquiere2011_data.csv | grep -w $i -c
+done
+
+1.11.3
+1. rowcolumncounter.sh ~/CSB/unix/data/Saavedra2013/n10.txt 
+Filename: /home/eeb177-student/CSB/unix/data/Saavedra2013/n10.txt
+Number of rows:
+14
+Number of columns:
+20
+
+2. 
+#! /bin/bash
+
+for n in ~/CSB/unix/data/Saavedra2013/*.txt
+do
+	echo "Filename: $n"
+	grep -c [0,1] $n
+	head -n 1 $n | grep -o ' '| wc -l
+done
+
+
+
+
+
