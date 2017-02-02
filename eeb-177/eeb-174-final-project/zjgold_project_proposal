@@ -1,0 +1,23 @@
+Gold, Zachary
+
+EEB 234
+
+1/29/2017
+
+
+
+Environmental DNA Pipeline Automation and Statistical Analysis
+
+
+
+For the class project in EEB 234 I am proposing to automate my environmental DNA (eDNA) metabarcoding pipeline and conduct robust multivariate statistical analysis on my eDNA 12s fish data from 43 samples collected in Mo’orea. Currently my pipeline relies on a series of programs (PEAR, MEGAN, QIIME, SWARM, and fastx_toolkit) and a few custom scripts to take raw sequence files and assign taxonomy. However, currently each output from the various programs must be sent separately to the next program or custom script. In addition, there is a step I am currently completing in excel whereby I set a contamination threshold from the PCR and field blanks. In order to increase the speed, ease of use, and repeatability of my pipeline, I hope to use a combination of tools we have learned in this course to automate this pipeline and allow for a more rapid analysis of metabarcoding data. Automating the pipeline will extensively use regular expressions, text processing, and flow control.
+
+In addition to automating the pipeline, I plan to conduct extensive data visualization and multivariate statistical analysis on the data output of the pipeline. The current raw data output is a taxonomy list and number sequences for each unique taxa for each samples. Data visualization will include operational taxonomic unit rarefaction curves, beta diversity jack-knife plots, and species relative abundance comparisons. However, I plan to do additional research into other visualization methods to better show differences in community structure and assemblages between samples as well as visualize the number of species obtained from eDNA data vs traditional methods. To further analyze this data I plan to conduct multivariate statistical analyses such as PERMANOVA to compare fish assemblages and community structure across a range of habitat types. However, I hope to identify multiple statistical analysis to analyze the fish assemblage data and compare their results. 
+
+
+
+Ultimately, I hope this project allows me to push forward my research and allow me to better analyze my current and future eDNA samples. 
+
+
+
+
