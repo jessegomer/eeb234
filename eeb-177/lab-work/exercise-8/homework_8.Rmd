@@ -1,0 +1,134 @@
+---
+title: "lab_hw_8"
+author: "ZJG"
+date: "March 1, 2017"
+output: html_document
+---
+
+```{r}
+housing <- read.csv("Rgraphics/dataSets/landdata-states.csv")
+head(housing[1:5])
+```
+
+```{r}
+hist(housing$Home.Value)
+```
+
+```{r}
+library(ggplot2)
+ggplot(housing, aes(x = Home.Value)) +
+  geom_histogram()
+```
+
+```{r}
+plot(Home.Value ~ Date,
+     data=subset(housing, State == "MA"))
+points(Home.Value ~ Date, col="red",
+       data=subset(housing, State == "TX"))
+legend(1975, 400000,
+       c("MA", "TX"), title="State",
+       col=c("black", "red"),
+       pch=c(1, 1))
+```
+
+```{r}
+ggplot(subset(housing, State %in% c("MA", "TX")),
+       aes(x=Date,
+           y=Home.Value,
+           color=State))+
+  geom_point()
+```
+
+
+```{r}
+hp2001Q1 <- subset(housing, Date == 2001.25) 
+ggplot(hp2001Q1,
+       aes(y = Structure.Cost, x = Land.Value)) +
+  geom_point()
+```
+
+```{r}
+ggplot(hp2001Q1,
+       aes(y = Structure.Cost, x = log(Land.Value))) +
+  geom_point()
+```
+
+
+
+```{r}
+hp2001Q1$pred.SC <- predict(lm(Structure.Cost ~ log(Land.Value), data = hp2001Q1))
+
+p1 <- ggplot(hp2001Q1, aes(x = log(Land.Value), y = Structure.Cost))
+
+p1 + geom_point(aes(color = Home.Value)) +
+  geom_line(aes(y = pred.SC))
+```
+
+```{r}
+p1 +
+  geom_point(aes(color = Home.Value)) +
+  geom_smooth()
+```
+
+
+```{r}
+p1 + 
+  geom_text(aes(label=State), size = 3)
+```
+
+```{r}
+install.packages("ggrepel") 
+library("ggrepel")
+p1 + 
+  geom_point() + 
+  geom_text_repel(aes(label=State), size = 3)
+```
+
+
+```{r}
+p1 +
+  geom_point(aes(color=Home.Value, shape = region))
+```
+
+
+## Exercise 1
+
+```{r}
+dat <- read.csv("Rgraphics/dataSets/EconomistData.csv")
+head(dat)
+```
+
+Create a scatter plot with CPI on the x axis and HDI on the y axis.
+
+```{r}
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point()
+```
+
+
+Color the points blue.
+```{r}
+p1 +
+  geom_point(color="blue")
+```
+
+Map the color of the the points to Region.
+
+```{r}
+p1 +
+  geom_point(aes(color= region))
+```
+
+Make the points bigger by setting size to 2
+
+```{r}
+p1+
+  geom_point(aes(color= region),size=2)
+```
+
+Map the size of the points to HDI.Rank
+
+```{r}
+p1 +
+  geom_point(aes(color= region), size = HDI.Rank)
+```
+
