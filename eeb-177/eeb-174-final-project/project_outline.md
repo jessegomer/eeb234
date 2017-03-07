@@ -1,0 +1,226 @@
+
+# Anacapa Pipeline
+
+## Metabarcoding Sequence Assignment and Analysis Scripts
+### Designed for Environmental DNA (eDNA) Analysis
+
+### Zack Gold, Ph.D Student
+##### Barber Lab
+##### Dept. Ecology and Evolutionary Biology
+
+#### EEB 234 Final Project
+
+# Introduction
+
+DNA sequencing technologies are evolving rapidly and now permit the collection of 10-15 million DNA sequences simultaneously. This advance is revolutionizing biodiversity science, particularly through the study of environmental DNA (eDNA). eDNA is a mixture of dissociated, free floating genomic DNA that accumulates from organisms living in an environment (1). This eDNA can be amplified from the environment, sequenced, and then identified to the species level through DNA barcoding, providing a rapid, cost effective, and accurate tool for assessing and monitoring biodiversity (1). Importantly, eDNA methods only require small volumes of water (less than 3L) and standard microbiology filtering techniques, allowing for simple and rapid collection of samples even in remote locations (2,3). As such, eDNA is an ideal method for comparative studies, such as those necessary to test the impacts of marine management practices on marine biodiversity.
+
+Controlled studies show that eDNA is accurate, detecting over 93% of fish species from seawater in both contained environments like aquaria as well as natural marine ecosystems like coral reefs (2), out performing all traditional fish survey methods including observer transect surveys and trawling (3-5). A strong advantage of eDNA techniques is their ability to detect rare and cryptic species that are frequently missed with traditional fish biodiversity assessment methods (12,15,17), including the detection of both endangered species and recently introduced invasive species, which are of special concern in conservation management (1,4,6). Importantly, eDNA not only detects the presence of species, but can provide critical information on the abundance of fish species as well (3,4). For example, recent work in Monterey Bay found strong correlations between fish counts and abundance of species specific sequences in eDNA analyses (3). Lastly, eDNA techniques are sensitive, distinguishing communities in marine coastal habitats including kelp forest, sea grass, and sandy bottoms as close as 60m apart, highlighting the power of eDNA techniques to capture fish species composition differences at the microhabitat level (3). Combined, the above advantages demonstrate the utility of eDNA techniques, allowing for unprecedented rapid, reliable, and repeatable assessments of marine fish biodiversity across a wide range of taxa (1). Thus eDNA has the capacity to revolutionize biodiversity monitoring and fisheries science by facilitating large scale comparisons of marine biodiversity across environmental gradients, anthropogenic stressors, and marine management practices. 
+
+This project seeks to streamline and automate the Anacapa metabarcoding bioinformatics pipeline to allow for standardized and rapid analysis of eDNA sequences. The Anacapa pipeline takes raw sequences, a reference library, and a mapping file and out puts assigned taxonomy, relative abundance, alpha diversity figures and analysis, and beta diversity figures and analysis of the metabarcoding data.
+
+The Anacapa pipeline can be broken into three steps: 
+1) Sequence Cleaning 
+2) Taxonomy Assignment 
+3) Data Analysis
+
+#### Sequence Cleaning
+
+1) Raw Sequence starting input fastq file
+2) PEAR (paired end read merger) software aligns matching forward and reverse sequences and outputs a paired fastq file (used for downstream analysis) and an unmerged fastq file
+3) Rename fastq by sample instead of Nextera Index adapters
+4) Concatenate fastq across projects to seperate different projects on the same sequencing run
+5) cutadapt to remove Illumina adapter sequences on ends of reads
+6) Custom Primer Sort ScriptFastX toolkit to remove low quality and short reads
+7) Output is cleaned fasta file
+
+#### Taxonomy Assignment
+
+1) Swarm OTU clustering to collapse identical sequences into representative operational taxonomix units and stores counts of each OTU
+2) Taxonomy assignment of sequences using BLAST with MEGAN and reference library taxonomy file 
+3) Generate BIOM Table using Qiime metabarcoding software program
+4) Qiime script: Pick representative OTUs
+5) PythonContamination Threshold Script to remove sequences below PCR blank and field extraction blank
+
+
+#### Data Analysis
+
+1) Summarize Taxa Through Plots to show bar graphs of relative abundance of species
+2) Alpha Diversity rarefaction curves to show biodiversity across sites and sequence saturation curves
+3) Beta Diversity PCOA to compare sites across specified environmental variable
+3) PERMANOVA and PERMDISP to calculate stastics on beta diversity analysis
+4) Compute Top 20 Abundance of species for each site and ANOVA to compare across all samples
+5) Calculate eDNA Species Recovery rates against total species documented in sampling location
+
+
+The Anacapa pipeline has one script the and anacapa pipeline.
+
+The anacapa script takes raw sequence files and runs the full bioinformatics pipeline providing an output of analyzed data.
+
+#Scripts need to be combined into over arching file
+#main script will be written in python but will call a series of bash, python, and r scripts
+
+### Sequencing Cleaning
+
+#Bash code that needs to be inserted into pipeline and variables need to be created in config file:
+
+#rename eDNA samples
+for i in RWDF001_S131_L002_ RWDF002_S132_L002_ RWDF003_S133_L002_ RWDF004_S134_L002_ RWDF005_S135_L002_ RWDF006_S136_L002_ RWDF007_S137_L002_ RWDF008_S138_L002_ RWDF009_S140_L002_ RWDF010_S141_L002_ RWDF011_S142_L002_ RWDF012_S143_L002_ RWDF013_S144_L002_ RWDF014_S145_L002_ RWDF015_S146_L002_ RWDF016_S147_L002_ RWDF017_S152_L002_ RWDF018_S153_L002_ RWDF019_S154_L002_ RWDF020_S155_L002_ RWDF021_S156_L002_ RWDF022_S157_L002_ RWDF023_S158_L002_ RWDF024_S159_L002_ RWDF025_S165_L002_ RWDF026_S166_L002_ RWDF027_S167_L002_ RWDF028_S168_L002_ RWDF029_S169_L002_ RWDF030_S170_L002_ RWDF031_S171_L002_ RWDF032_S178_L002_ RWDF033_S172_L002_ RWDF034_S179_L002_ RWDF035_S180_L002_ RWDF036_S181_L002_ RWDF037_S182_L002_ RWDF038_S183_L002_ RWDF039_S184_L002_ RWDF040_S185_L002_ RWDF041_S191_L002_ RWDF042_S192_L002_ RWDF043_S193_L002_ RWDF044_S194_L002_ RWDF045_S195_L002_ RWDF046_S196_L002_ RWDF047_S197_L002_ RWDF048_S198_L002_ RWDF049_S204_L002_ RWDF050_S205_L002_ RWDF051_S206_L002_ RWDF052_S207_L002_ RWDF053_S208_L002_ RWDF054_S209_L002_ RWDF055_S210_L002_ RWDF056_S216_L002_ RWDF057_S217_L002_ RWDF058_S218_L002_ RWDF059_S219_L002_ RWDF060_S220_L002_ RWDF061_S221_L002_ RWDF062_S222_L002_   ;
+do
+	echo $i
+ 	sed -i "s/K00188/$i/g" /u/home/e/eecurd/project-rwayne/eecurd/bat/fastq/$i"R1_001.fastq" 
+ 	sed -i "s/K00188/$i/g" /u/home/e/eecurd/project-rwayne/eecurd/bat/fastq/$i"R2_001.fastq"
+done
+
+#split in samples by project and send them to PEAR software	
+for i in RWDF001_S131_L002_ RWDF002_S132_L002_ RWDF003_S133_L002_ RWDF004_S134_L002_ RWDF005_S135_L002_ RWDF006_S136_L002_ RWDF007_S137_L002_ RWDF008_S138_L002_ RWDF009_S140_L002_ RWDF010_S141_L002_ RWDF011_S142_L002_ RWDF012_S143_L002_ RWDF013_S144_L002_ RWDF014_S145_L002_ RWDF015_S146_L002_ RWDF016_S147_L002_ RWDF017_S152_L002_ RWDF018_S153_L002_ RWDF019_S154_L002_ RWDF020_S155_L002_ RWDF021_S156_L002_ RWDF022_S157_L002_ RWDF023_S158_L002_ RWDF024_S159_L002_ RWDF025_S165_L002_ RWDF026_S166_L002_ RWDF027_S167_L002_ RWDF028_S168_L002_ RWDF029_S169_L002_ RWDF030_S170_L002_ RWDF031_S171_L002_ RWDF032_S178_L002_ RWDF033_S172_L002_ RWDF034_S179_L002_ RWDF035_S180_L002_ RWDF036_S181_L002_ RWDF037_S182_L002_ RWDF038_S183_L002_ RWDF039_S184_L002_ RWDF040_S185_L002_ RWDF041_S191_L002_ RWDF042_S192_L002_ RWDF043_S193_L002_ RWDF044_S194_L002_ RWDF045_S195_L002_ RWDF046_S196_L002_ RWDF047_S197_L002_ RWDF048_S198_L002_ RWDF049_S204_L002_ RWDF050_S205_L002_ RWDF051_S206_L002_ RWDF052_S207_L002_ RWDF053_S208_L002_ RWDF054_S209_L002_ RWDF055_S210_L002_ RWDF056_S216_L002_ RWDF057_S217_L002_ RWDF058_S218_L002_ RWDF059_S219_L002_ RWDF060_S220_L002_ RWDF061_S221_L002_ RWDF062_S222_L002_   ;
+do
+	echo $i
+	/u/home/e/eecurd/project-rwayne/eecurd/bin/pear-0.9.10-bin-64/pear-0.9.10-bin-64 -f $i"R1_001.fastq" -r $i"R2_001.fastq" -o /u/home/e/eecurd/project-rwayne/eecurd/bat/pear_out/$i -q 30
+done
+
+#Concatenate PEAR assembled merged reads from each sample into a fastq
+cat *.assembled.fastq > DF_assembled.fastq
+
+#move newly created file into new directory
+mkdir /u/home/e/eecurd/project-rwayne/eecurd/bat/qc/
+mv DF_assembled.fastq /u/home/e/eecurd/project-rwayne/eecurd/bat/qc/
+
+#cut adapter and filter for length (>124 bp) using fastx_toolkit
+module load fastx_toolkit/0.0.13.2
+/u/home/.local/bin/cutadapt -a TCGTCGGCAGCGTCAGATGTGTATAAGAGACAGGT -g GTCTCGTGGGCTCGGAGATGTGTATAAGAGACAG --minimum-length 125 path/DF_assembled.fastq > path/DF_assembled_cut.fastq
+
+# Convert Fastq to fasta file
+module load Fast
+fastq_to_fasta -i /path/DF_assembled_cut.fastq -o /path/DF_assembled_cut.fasta -n -Q33
+
+
+
+
+### Taxonomy Assignment
+
+
+
+#Pick OTUs assigns similar sequences to operational taxonomic units (example Genus) set at a user given #threshold (example .98 similarity)
+
+module load qiime/1.8.0
+#input is assembled fasta, reference library, parameter file and output is text file with matching otus
+pick_open_reference_otus.py -i DF_assembled_cut.fasta -r /path/Mifish_40k.fasta -o /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/pick_otu/moorea_mifish -p /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/params.txt -s 0.98
+
+#assigns one representative sequence to each OTU
+pick_rep_set.py -i /pathDF_assembled_cut_otus.txt -f /path/DF_assembled_cut.fasta -o /u/home/e/eecurd/project-rwayne/eecurd/bat/qiime/repset_98.fasta
+
+#blast repset to assign taxonomy to each OTU
+/bin/ncbi-blast-2.6.0+/bin/blastn -query path/repset_98.fasta -db /mifish_db -evalue 0.0000001 -outfmt 0 -num_alignments 20 -out /path/BLAST_repset_99.txt
+
+#makeblast db 
+ ~/bin/ncbi-blast-2.6.0+/bin/makeblastdb -in /blast_databases/mifish_db.fasta -dbtype nucl -title "MiFish_blast_db" -out blast_databases/mifish -taxid_map /path/blast_databases/ncbi_accessions_taxonomy_dump/nucl_gb.accession2taxid -parse_seqids
+
+
+#remove low confidence assignments from megan taxonomy
+#need to convert text wrangler find with Bash sed command
+
+#with Text wrangeler:
+#find
+(denovo\d*;.*;\s100).+
+#relpace
+\1
+
+#not working sed -i 's/[ ].*;[ ][0-9][0-9];//' /Users/limeybean/Downloads/test.txt
+
+#convert biom file into .tsv
+biom convert -i /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/per_study_otu_tables/otu_table_mc2_w_tax.biom_renamed.biom  -o otu_table_mc2_w_tax.biom_renamed.txt --to-tsv --header-key taxonomy
+
+
+
+```python
+import numpy
+
+#open biom file .tsv
+alldata=pd.read_csv('otu_table_mc2_w_tax__Project_Moorea__renamed_text.txt',sep='\t', header=1)
+
+#grab taxonomy and OTU ID columns 
+labels=alldata[['#OTU ID','taxonomy']]
+
+#grab controls columns
+controls=alldata[['pcrblank','negcontrol1']]
+
+#select sequences only 
+data=alldata.drop(['#OTU ID','taxonomy','pcrblank','negcontrol1'],axis=1)
+
+#create decontaminate_column function which sets a contamination threshold equal to the control column. All samples that have fewer sequence for a given OTU than the control column are assumed to be contaminated by trace amounts and are set to zero. 
+def decontaminate_column(data_column,control_column):
+    column = data_column.copy()
+    column.ix[column <= control_column] = 0
+    return column
+
+#function to run decontaminate_column across multiple controls
+def decontaminate(dataframe,control):
+    for control_name in control.columns.values.tolist():
+        print(control_name)
+        dataframe=dataframe.apply(lambda c: decontaminate_column(c, control[control_name]), axis=0)
+    return dataframe
+
+# create a cleaned otu table with contamination removed
+cleaned_otu_table = pd.concat([labels['#OTU ID'],controls,data,labels['taxonomy']],axis=1)
+
+# write to csv
+with open('otu_table_mc2_w_tax__Project_Moorea__renamed_text.txt', 'r') as f:
+    comment=f.readline()
+    print(comment.strip())
+    
+#add required header for Qiime
+with open('cleaned_otu_table.csv', 'w') as f:
+    f.write(comment)
+```
+
+
+#split OTUs before renaming
+Split OTUs
+split_otu_table.py -i /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/pick_otu/moorea_mifish/otu_table_mc2_w_tax.biom -m /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/moorea_1_seq_map.txt  -f Project -o /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/pick_otu/moorea_mifish/per_project_otu_tables
+
+Collapse Samples to Rename Samples
+collapse_samples.py -b /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/pick_otu/moorea_mifish/per_project_otu_tables/otu_table_mc2_w_tax__Project_Moorea__.biom -m /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/moorea_1_seq_map.txt --output_biom_fp /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/pick_otu/moorea_mifish/per_project_otu_tables/otu_table_mc2_w_tax__Project_Moorea__renamed.biom --output_mapping_fp omitted --collapse_mode sum --collapse_fields Sample_name
+
+Remove Unassigned Reads
+filter_otus_from_otu_table.py -i /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/pick_otu/moorea_mifish/per_project_otu_tables/otu_table_mc2_w_tax__Project_Moorea__renamed_controls_removed.biom  -o /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/pick_otu/moorea_mifish/per_project_otu_tables/otu_table_mc2_w_tax__Project_Moorea__renamed_negcontrols_standardized_unassigned_removed.biom -e /Users/paulbarber/Desktop/zjg_folder/201609_ZG/gz/pick_otu/moorea_mifish/per_project_otu_tables/unassigned.txt 
+
+
+# Data Analyis
+
+summarize_taxa_through_plots.py -i /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/per_study_otu_tables/otu_table_mc2_w_tax__Project_CSC__unassigned_removed.biom -f -o /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/taxa_summary_csc -m /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/Maps/moorea_1_seq_map.txt -p /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/species_parameter.txt 
+
+#insert figure here
+
+make_otu_heatmap.py -i /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/per_study_otu_tables/otu_table_mc2_w_tax_no_pynast_failures__Project_Moorea__.biom -o otu_table_moorea_heatmap.pdf -c Habitat -m /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/moorea_1_seq_map.txt -c Habitat
+
+#insert figure here
+
+alpha_rarefaction.py -i /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/per_study_otu_tables/otu_table_mc2_w_tax__Project_CSC__unassigned_removed.biom -m /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/per_study_otu_tables/moorea_1_seq_map__Project_CSC__.txt -o cscrare -p /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/alpha_params.txt -t /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Dropbox/201609_ZG/MiFish/otu_default/rep_set.tre -f
+
+#insert figure here
+
+jackknifed_beta_diversity.py -i /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/per_study_otu_tables/otu_table_mc2_w_tax__Project_CSC__unassigned_removed.biom -m /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/per_study_otu_tables/moorea_1_seq_map__Project_CSC__.txt -o jack_bdiv_csc -t /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Dropbox/201609_ZG/MiFish/otu_default/rep_set.tre -e 1000 -f
+
+#insert figure here
+
+
+beta_diversity.py -i /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/per_study_otu_tables/otu_table_mc2_w_tax__Project_CSC__unassigned_removed.biom -m weighted_unifrac -o beta_div_csc/ -t /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Dropbox/201609_ZG/MiFish/otu_default/rep_set.tre
+
+#insert figure here
+
+compare_categories.py --method permanova -i /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/beta_div_csc/weighted_unifrac_otu_table_mc2_w_tax__Project_CSC__unassigned_removed.txt -m /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/per_study_otu_tables/moorea_1_seq_map__Project_CSC__.txt -c Perservative -o permanova_out_csc -n 999
+
+compare_categories.py --method permdisp -i /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/beta_div_csc/weighted_unifrac_otu_table_mc2_w_tax__Project_CSC__unassigned_removed.txt -m /Users/zacharygold/Documents/UCLAPhD/Projects/Moorea/Sequences/per_study_otu_tables/moorea_1_seq_map__Project_CSC__.txt -c Perservative -o permdisp_out_csc -n 999
+
+#insert table here with stastics output/summary
+
+### References
+
+1.	Taberlet et al. (2012). Molecular Ecology, 21(8), 1789-1793.
+2.	Miya et al. (2015). Royal Society Open Science, 2(7), 150088.
+3.	Port et al. (2015). Molecular ecology.
+4.	Valentini et al. (2016). Molecular ecology.
+5.	Thomsen et al. (2012). PLoS one, 7(8), p.e41732.
+6.	Dejean et al. (2012). Journal of Applied Ecology, 49(4), pp.953-959.
+
+
