@@ -77,7 +77,7 @@ p1 +
 ```
 
 ```{r}
-install.packages("ggrepel") 
+#install.packages("ggrepel") 
 library("ggrepel")
 p1 + 
   geom_point() + 
@@ -98,6 +98,10 @@ dat <- read.csv("Rgraphics/dataSets/EconomistData.csv")
 head(dat)
 ```
 
+```{r}
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point()
+```
+
 Create a scatter plot with CPI on the x axis and HDI on the y axis.
 
 ```{r}
@@ -107,28 +111,157 @@ ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point()
 
 Color the points blue.
 ```{r}
-p1 +
-  geom_point(color="blue")
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(color="blue")
 ```
 
 Map the color of the the points to Region.
 
 ```{r}
-p1 +
-  geom_point(aes(color= region))
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(aes(color= Region))
 ```
 
 Make the points bigger by setting size to 2
 
 ```{r}
-p1+
-  geom_point(aes(color= region),size=2)
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(aes(color= Region),size=2)
 ```
 
 Map the size of the points to HDI.Rank
 
 ```{r}
-p1 +
-  geom_point(aes(color= region), size = HDI.Rank)
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(aes(color= Region))
+
+```
+```{r}
+p2 <- ggplot(housing, aes(x = Home.Value))
+p2 + geom_histogram()
+```
+
+```{r}
+p2 + geom_histogram(stat = "bin", binwidth=4000)
+```
+
+```{r}
+housing.sum <- aggregate(housing["Home.Value"], housing["State"], FUN=mean)
+rbind(head(housing.sum), tail(housing.sum))
+```
+
+```{r}
+ggplot(housing.sum, aes(x=State, y=Home.Value)) + 
+  geom_bar(stat="identity")
+```
+Exercise II
+
+Re-create a scatter plot with CPI on the x axis and HDI on the y axis (as you did in the previous exercise).
+
+```{r}
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(aes(color= Region),size=2)
+```
+
+Overlay a smoothing line on top of the scatter plot using geom_smooth.
+
+```{r}
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(aes(color= Region),size=2) + geom_smooth()
+```
+Overlay a smoothing line on top of the scatter plot using geom_smooth, but use a linear model for the predictions. Hint: see ?stat_smooth.
+
+```{r}
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(aes(color= Region),size=2) + geom_smooth(method ="lm")
+```
+
+Overlay a smoothing line on top of the scatter plot using geom_line. Hint: change the statistical transformation.
+```{r}
+ggplot(dat, aes(x = CPI, y = HDI)) + geom_point(aes(color= Region),size=2) + geom_line(stat="identity")
+```
+
+BONUS: Overlay a smoothing line on top of the scatter plot using the default loess method, but make it less smooth. Hint: see ?loess.
+
+```{r}
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(aes(color= Region),size=2) + geom_smooth(span = .2)
+```
+
+
+Scale
+```{r}
+p3 <- ggplot(housing,
+             aes(x = State,
+                 y = Home.Price.Index)) + 
+        theme(legend.position="top",
+              axis.text=element_text(size = 6))
+(p4 <- p3 + geom_point(aes(color = Date),
+                       alpha = 0.5,
+                       size = 1.5,
+                       position = position_jitter(width = 0.25, height = 0)))
+```
+
+```{r}
+p4 + scale_x_discrete(name="State Abbreviation") +
+  scale_color_continuous(name="",
+                         breaks = c(1976, 1994, 2013),
+                         labels = c("'76", "'94", "'13"))
+```
+
+```{r}
+p4 +
+  scale_x_discrete(name="State Abbreviation") +
+  scale_color_continuous(name="",
+                         breaks = c(1976, 1994, 2013),
+                         labels = c("'76", "'94", "'13"),
+                         low = "blue", high = "red")
+```
+
+```{r}
+p4 +
+  scale_color_continuous(name="",
+                         breaks = c(1976, 1994, 2013),
+                         labels = c("'76", "'94", "'13"),
+                         low = muted("blue"), high = muted("red"))
+```
+
+```{r}
+p4 +
+  scale_color_gradient2(name="",
+                        breaks = c(1976, 1994, 2013),
+                        labels = c("'76", "'94", "'13"),
+                        low = "blue",
+                        high = "red",
+                        mid = "gray60",
+                        midpoint = 1994)
+```
+
+Exercise 3
+
+```{r}
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(aes(color= Region),size=2)
+```
+```{r}
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(aes(color= Region),size=2) + scale_y_continuous("Human Development Index") + scale_x_continuous("Consumer Price Index") + scale_colour_hue(h = c(0, 180), l = 50)
+```
+
+```{r}
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank)) + geom_point(aes(color= Region),size=2) + scale_y_continuous("Human Development Index") + scale_x_continuous("Consumer Price Index") + scale_colour_manual(values= c("darkblue", "blue", "lightblue", "cyan", "darkcyan", "lightcyan"))
+```
+
+Faceting
+```{r}
+p5 <- ggplot(housing, aes(x = Date, y = Home.Value))
+p5 + geom_line(aes(color = State))
+```
+
+```{r}
+(p5 <- p5 + geom_line() +
+   facet_wrap(~State, ncol = 10))
+```
+
+```{r}
+p5 + theme_linedraw()
+```
+
+Final Exercise
+
+```{r}
+country_labels <- c("Russia", "Venezula", "Iraq", "Myanmar", "Sudan", "Afghanostan", "Congo", "India", "Brazil", "Argentina", "Greece", "Italy", "Spain", "France", "US", "Botswana", "Cape Verde", "Rwanda", "Bhutan", "Barbados", "Japan", "China", "Germany", "Britain", "Singapore", "New Zealand", "Norway", "South Africa")
+
+ggplot(dat, aes(x = CPI, y = HDI, size = HDI.Rank, label = Country) ) + theme_minimal()+  geom_point(shape =21, aes(color= Region,), size=2, fill = "white") + scale_y_continuous("Human Development Index") + scale_x_continuous("Corruption Protections Index") + scale_colour_manual(values = c("darkgreen", "darkslategrey", "aquamarine4", "darkcyan", "firebrick3", "darkred"  )) + geom_smooth(method = "lm", formula = y ~ poly(x,3), se= FALSE , color = "red", size = 0.5) + geom_text_repel(aes(label=Country), size = 3, check_overlap = TRUE, position = position_dodge(.1)) + 
 ```
 
