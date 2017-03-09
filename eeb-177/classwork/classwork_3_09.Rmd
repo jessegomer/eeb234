@@ -1,0 +1,19 @@
+In class notes
+
+don't have code because was in the field during the last class
+
+forcats is used to sort the data based on the youngest  to oldest appearance
+
+faceted ranges : each genus as a header, species are on the x axis, saved to a pdf and make the plot large -> 
+
+diversity through time information is stored in the species appearance and disappearance plot
+
+don't need to use tree fucntion to generate the plot
+
+
+
+```{r}
+
+
+```
+
