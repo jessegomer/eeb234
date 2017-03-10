@@ -1,0 +1,12 @@
+---
+title: "classwork-3-02"
+author: "ZJG"
+date: "March 2, 2017"
+output: html_document
+---
+
+## Code
+```{r}
+installed.packages('paleotree')
+
+```

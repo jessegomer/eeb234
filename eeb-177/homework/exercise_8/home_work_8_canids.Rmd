@@ -1,0 +1,207 @@
+---
+title: "homework_8_canids"
+author: "ZJG"
+date: "March 9, 2017"
+output: html_document
+---
+
+```{r}
+file=read.csv('/home/eeb177-student/Desktop/eeb234/eeb-177/classwork/canids/test_3.csv', header = FALSE)
+file
+
+```
+
+```{r}
+names <- file[ , 'V1'] 
+species <- file[, 'V2']
+species_names <- paste(names,species)
+file[,'names'] <- species_names
+newfile <- file[order(file$V4),]
+newfile
+```
+ggplot
+
+```{r}
+ggplot(data = newfile, aes(x = V3, y = names)) + geom_segment(aes(xend = V3+V4, yend= names, color = V1), show.legend = FALSE) + labs(title = "Canids Stratographic Ranges", y = "Species Names", x = "Mya") + theme(axis.text.y = element_text(size=2), axis.text.x =element_text(size=12))
+       
+````
+
+Answers to Questions
+
+Taxonomic group displayed: Canids
+
+How many unique fossil species are contained within it: 
+
+```{r}
+species <- unique(newfile["names"])
+nrow(species)
+
+```
+
+How many unique fossil genera are there?
+
+```{r}
+genera <- unique(newfile["V1"])
+nrow(genera)
+
+```
+
+Species with the longest span:
+Cormocyon copei
+
+```{r}
+cats=read.csv('/home/eeb177-student/Desktop/eeb234/eeb-177/classwork/canids/cats.csv', header = FALSE)
+cats
+
+```
+
+```{r}
+names <- cats[ , 'V1'] 
+species <- cats[, 'V2']
+species_names <- paste(names,species)
+cats[,'names'] <- species_names
+newcats <- cats[order(file$V4),]
+newcats
+```
+ggplot
+
+```{r}
+ggplot(data = newcats, aes(x = V3, y = names)) + geom_segment(aes(xend = V3+V4, yend= names, color = V1), show.legend = FALSE) + labs(title = "Canids Stratographic Ranges", y = "Species Names", x = "Mya") + theme(axis.text.y = element_text(size=2), axis.text.x =element_text(size=12))
+       
+````
+
+Answers to Questions
+
+Taxonomic group displayed: Felidae
+
+How many unique fossil species are contained within it: 
+
+```{r}
+species <- unique(newcats["names"])
+nrow(species)
+
+```
+
+How many unique fossil genera are there?
+
+```{r}
+genera <- unique(newcats["V1"])
+nrow(genera)
+
+```
+Species with the longest span:
+
+Caracal caracal
+
+
+
+# Exploring Data Frames
+
+```{r}
+df <- data.frame( first = c('Zack'), last = c('Gold'), lucky_number= c(8), stringsAsFactors = FALSE)
+df <- rbind(df, list('Kelcie', 'Chiquillo', 17))
+df <- cbind(df, coffeetime = c(TRUE,TRUE))
+df
+```
+
+Challenge 2
+```{r}
+
+source(file = '/home/eeb177-student/scripts/load-gapminder.R')
+
+
+```
+
+Challenge 3
+country and continent are factor type
+pop, lifeExp, and gdpPercap are numeric vectors
+year is an int vector
+
+#Subsetting
+
+```{r}
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+x[2:4]
+x[c('b','c','d')]
+x[-c(1,5)]
+
+
+```
+
+```{r}
+x[-which(names(x) == "g")]
+```
+Challenge 2
+empty vector since no number to entry g, no true values therefore returns empty()
+
+Challenge 3
+```{r}
+xsubset = x[7 > x & x > 4]
+```
+
+Challenge 4
+
+```{r}
+m <- matrix(1:18, nrow=3, ncol=6)
+print(m)
+```
+
+```{r}
+m[2,c(4,5)] # D
+```
+Challenge 5
+```{r}
+
+xlist <- list(a = "Software Carpentry", b = 1:10, data = head(iris))
+xlist$b[2]
+```
+
+Challenge 6
+mod$df.residual
+
+
+
+Challenge 7
+
+1. = should be == to satify boolean
+2. rewrite as ,-c(1:4)
+3. need to select the column >80,]
+4. need c(4,5)
+5. %in% c(2002,2007),
+
+Challenge 8
+
+Data frames can not be subsetted on one dimension.
+
+# Publication quality graphs
+ggplot(data = gapminder, aes(x = year, y = lifeExp)) + geom_point()
+
+Challenge 2
+ggplot(data = gapminder, aes(x = year, y = lifeExp, color = continent)) + geom_point()
+
+Challenge 3
+switching the order of the line and point layers changes which of the graphs is plotted on top of the other
+
+Challenge 4
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
+  geom_point(size = 1.5, color = 'blue') + scale_x_log10() + geom_smooth(method="lm", size=1.5)
+
+Challenge 4b
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp,color = continent)) +
+  geom_point(size = 1.5, pch=17) + scale_x_log10() + geom_smooth(method="lm", size=1.5)
+
+
+Challenge 5
+
+ggplot(data = gapminder, aes(x = gdpPercap, fill=continent)) +
+ geom_density(alpha=0.6) + facet_wrap( ~ year) + scale_x_log10()
+
+
+
+
+
+
+
+       
